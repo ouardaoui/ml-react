@@ -9,24 +9,24 @@ import {
 } from "react-native";
 
 import firebase from "../database/firebase";
+//[age	sex	cp	trestbps	chol	fbs	restecg	thalach	exang	oldpeak	slope	ca	thal	target]=>[a,b,c,d,e,f,g,h,l,m,o,x,y]
+
 
 const CreateUserScreen = (props) => {
   const initalState = {
-    age: "",
-    sex :"",
-    cp : "",
-    trestbps : "",
-    chol : "",
-    fbs : "",
-    restecg : "",
-    thalach : "",
-    exang : "",
-    oldpeak : "",
-    slope : "",
-    ca  : "",
-    thal : "",
-    num : "",
-
+    a: "",
+    b :"",
+    c : "",
+    d : "",
+    e : "",
+    f : "",
+    g : "",
+    h : "",
+    l : "",
+    m : "",
+    n : "",
+    o  : "",
+    x : "",
   };
 
   const [state, setState] = useState(initalState);
@@ -39,21 +39,20 @@ const CreateUserScreen = (props) => {
     if (state.name === "") {
       alert("please provide a name");
     } else {
-        await firebase.db.collection("users").add({
-          age: state.age,
-          sex : state.sex,
-          cp : state.cp,
-          trestbps : state.trestbps,
-          chol : state.chol,
-          fbs : state.fbs,
-          restecg : state.restecg,
-          thalach : state.thalach,
-          exang : state.exang,
-          oldpeak : state.oldpeak,
-          slope : state.slope,
-          ca  : state.ca,
-          thal : state.thal,
-          num : state.num,
+        await firebase.db.collection("users").doc("usr").set({
+          a: state.a,
+          b : state.b,
+          c : state.c,
+          d : state.d,
+          e : state.e,
+          f : state.f,
+          g : state.g,
+          h : state.h,
+          l : state.l,
+          m : state.m,
+          n : state.n,
+          o : state.o,
+          x : state.x,
         });
         alert("saved")
     }
@@ -67,7 +66,7 @@ const CreateUserScreen = (props) => {
         <Text style ={styles.text}>Patient age in years</Text>
         <TextInput
           placeholder="Age(Continuous)"
-          onChangeText={(value) => handleChangeText(value, "age")}
+          onChangeText={(value) => handleChangeText(value, "a")}
           value={state.age}
         />
       </View>
@@ -77,7 +76,7 @@ const CreateUserScreen = (props) => {
         <Text style ={styles.text}>Patient gender (1 = male; 0 = female)</Text>
         <TextInput
           placeholder="sex(Categorical) 1 or 0 "
-          onChangeText={(value) => handleChangeText(value, "sex")}
+          onChangeText={(value) => handleChangeText(value, "b")}
           value={state.sex}
         /> 
       </View>{/*cp */}
@@ -86,7 +85,7 @@ const CreateUserScreen = (props) => {
         <Text style ={styles.text}>(1 = typical angina; 2 = atypical angina; 3 = nonanginal pain; 4 = no pain)</Text>
         <TextInput
           placeholder="Categorical( 1 || 2 || 3 || 4)"
-          onChangeText={(value) => handleChangeText(value, "cp")}
+          onChangeText={(value) => handleChangeText(value, "c")}
           value={state.cp}
         />
       </View>
@@ -96,7 +95,7 @@ const CreateUserScreen = (props) => {
         <Text style ={styles.text}>ContinuousResting blood pressure (in mmHg) on admission to the hospital</Text>
         <TextInput
           placeholder="value in mmHg (Continuous)"
-          onChangeText={(value) => handleChangeText(value, "trestbps")}
+          onChangeText={(value) => handleChangeText(value, "d")}
           value={state.trestbps}
         />
       </View>
@@ -106,7 +105,7 @@ const CreateUserScreen = (props) => {
         <Text style ={styles.text}>	Serum cholesterol in mg/dl</Text>
         <TextInput
           placeholder="value in mg/dl (Continuous)"
-          onChangeText={(value) => handleChangeText(value, "chol")}
+          onChangeText={(value) => handleChangeText(value, "e")}
           value={state.chol}
         />
       </View>
@@ -116,7 +115,7 @@ const CreateUserScreen = (props) => {
         <Text style ={styles.text}>Fasting blood sugar higher than 120 mg/dl</Text>
         <TextInput
           placeholder="(1 = true; 0 = false)"
-          onChangeText={(value) => handleChangeText(value, "fbs")}
+          onChangeText={(value) => handleChangeText(value, "f")}
           value={state.fbs}
         />
       </View>
@@ -126,7 +125,7 @@ const CreateUserScreen = (props) => {
         <Text style ={styles.text}>Resting electrocardigram</Text>
         <TextInput
           placeholder="(0 = normal; 1 = ST-T wave abnormality; 2 = probable/definite left ventricular hypertrophy)"
-          onChangeText={(value) => handleChangeText(value, "restecg")}
+          onChangeText={(value) => handleChangeText(value, "g")}
           value={state.restecg}
         />
       </View>
@@ -136,7 +135,7 @@ const CreateUserScreen = (props) => {
         <Text style ={styles.text}>Maximum heart rate achieved</Text>
         <TextInput
           placeholder="(during thallium test)"
-          onChangeText={(value) => handleChangeText(value, "thalach")}
+          onChangeText={(value) => handleChangeText(value, "h")}
           value={state.thalach}
         />
       </View>
@@ -146,7 +145,7 @@ const CreateUserScreen = (props) => {
         <Text style ={styles.text}>Exercise induced angina </Text>
         <TextInput
           placeholder="Categorical (1 = yes; 0 = no)"
-          onChangeText={(value) => handleChangeText(value, "exang")}
+          onChangeText={(value) => handleChangeText(value, "l")}
           value={state.exang}
         />
       </View>
@@ -156,7 +155,7 @@ const CreateUserScreen = (props) => {
         <Text style ={styles.text}>ST depression induced by exercise relative to rest</Text>
         <TextInput
           placeholder="(Continuous)"
-          onChangeText={(value) => handleChangeText(value, "oldpeak")}
+          onChangeText={(value) => handleChangeText(value, "m")}
           value={state.oldpeak}
         />
       </View>
@@ -166,7 +165,7 @@ const CreateUserScreen = (props) => {
         <Text style ={styles.text}>Slope of the peak exercise ST segment</Text>
         <TextInput
           placeholder="categorical (1 = up-sloping; 2 = flat; 3 = down-sloping)"
-          onChangeText={(value) => handleChangeText(value, "slope")}
+          onChangeText={(value) => handleChangeText(value, "n")}
           value={state.slope}
         />
       </View>
@@ -176,7 +175,7 @@ const CreateUserScreen = (props) => {
         <Text style ={styles.text}>	Number of major vessels (0 to 3) colored by fluoroscopy</Text>
         <TextInput
           placeholder="Age(Continuous)"
-          onChangeText={(value) => handleChangeText(value, "ca")}
+          onChangeText={(value) => handleChangeText(value, "o")}
           value={state.ca}
         />
       </View>
@@ -186,18 +185,8 @@ const CreateUserScreen = (props) => {
         <Text style ={styles.text}>Thallium heart scan</Text>
         <TextInput
           placeholder="categorical (3 = normal; 6 = fixed defect; 7 = reversible defect)"
-          onChangeText={(value) => handleChangeText(value, "thal")}
+          onChangeText={(value) => handleChangeText(value, "x")}
           value={state.thal}
-        />
-      </View>
-      {/* num */}
-      <View style={styles.inputGroup}>
-        <Text style ={styles.title}>num :</Text>
-        <Text style ={styles.text}>	Categorical	Diagnosis of heart disease (angiographic disease status)</Text>
-        <TextInput
-          placeholder="(0 = absent; 1 to 4 = present)"
-          onChangeText={(value) => handleChangeText(value, "num")}
-          value={state.num}
         />
       </View>
       <View style={styles.button}>
